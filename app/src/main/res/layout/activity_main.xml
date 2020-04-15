@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchWords_fatherLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FEFEFE"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.wordcheck.MainActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#FEFEFE"
+        android:orientation="horizontal"
+        android:paddingRight="16dp">
+
+
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableLeft="@drawable/search"
+            android:drawablePadding="8dp"
+            android:gravity="start|center_vertical"
+            android:hint="输入查询的单词"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
+            android:textColor="#3B3C3D"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+
+                >
+
+                <TextView
+                    android:id="@+id/tv_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="left|center_vertical"
+                    android:text="搜索历史" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE">
+
+                </View>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.43"
+                    android:background="@drawable/layer_list_view">
+
+
+                <com.example.wordcheck.util.MyListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.example.wordcheck.util.MyListView>
+
+              </ScrollView>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE"></View>
+
+            <TextView
+                android:id="@+id/tv_clear"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#F6F6F6"
+                android:gravity="center"
+                android:text="清除搜索历史" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="20dp"
+                android:background="#EEEEEE"></View>
+        </LinearLayout>
+
+    </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/searchWords_linerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/searchWords_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="abc"
+                android:textSize="40dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/searchWords_posE_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+
+            <ImageButton
+                android:id="@+id/searchWords_voiceE"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/voice" />
+
+            <TextView
+                android:id="@+id/searchWords_psE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="7dp"
+                android:text="@string/psE"
+                android:textColor="#3B3C3D"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/searchWords_posA_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="40dp">
+
+            <ImageButton
+                android:id="@+id/searchWords_voiceA"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/voice"/>
+
+            <TextView
+                android:id="@+id/searchWords_psA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="7dp"
+                android:text="@string/psA"
+                android:textColor="#3B3C3D"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#3F51B5"
+            >
+
+            <LinearLayout
+                android:layout_width="0.5dp"
+                android:layout_height="0.5dp"
+                android:background="#3F51B5">
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/searchWords_posAcceptation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layer_list_view"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="Basic"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:layout_width="0.5dp"
+                android:layout_height="0.5dp"
+                android:background="#3F51B5">
+            </LinearLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.43"
+            android:background="@drawable/layer_list_view">
+
+            <TextView
+                android:id="@+id/searchWords_sent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:background="@drawable/layer_list_view"
+                android:text="example"
+                android:textSize="15dp" />
+        </ScrollView>
+        <LinearLayout
+            android:layout_width="0.5dp"
+            android:layout_height="0.5dp"
+            android:background="#3F51B5">
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

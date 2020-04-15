@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/add"
+        android:title="Add"
+        android:icon="@drawable/more"
+        />
+    <item
+        android:id="@+id/newWords"
+        android:title="NewWords"
+        android:icon="@drawable/notebook"/>
+    <item
+        android:id="@+id/sentence"
+        android:title="Sentence"
+        android:icon="@drawable/notebook"/>
+    <item
+        android:id="@+id/recite"
+        android:title="Recite"
+        android:icon="@drawable/notebook"/>
+</menu>
