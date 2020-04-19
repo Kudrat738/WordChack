@@ -1,9 +1,11 @@
-package com.example.wordcheck.example;
+package com.example.wordcheck.util;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.wordcheck.kind.WordInfo;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -71,12 +73,7 @@ public class WordBox {
         dbW.delete(tableName, "word=?", new String[]{word});
     }
 
-    /**
-     * 多个条件查找Where子句时需要用and 或or连接
-     * @param grasp
-     * @param learned
-     * @return
-     */
+
 
     public int getWordCountByGrasp(int grasp ,int learned){       //获得数据库中某个掌握程度的单词的个数
         Cursor cursor=dbR.query(tableName, new String[]{"word"}, "grasp=? and learned=?", new String[]{grasp+"",learned+""}, null, null, null);
@@ -179,8 +176,6 @@ public class WordBox {
         return new WordInfo(word, interpret, wrong, right, grasp);
     }
 
-    String[] logProcess=new String[]{"G01","","G23","","G45","","G67","","G89","","NEW WORD"};
-    String[] logLearn=new String[]{"NEW1","REVIEW20","NEW2","REVIEW6"};
 
     //外部接口，点击事件后获得单词
     public WordInfo popWord(){

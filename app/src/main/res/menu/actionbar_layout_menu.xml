@@ -15,6 +15,11 @@
         android:icon="@drawable/notebook"/>
     <item
         android:id="@+id/recite"
-        android:title="Recite"
+        android:title="ReciteWord"
         android:icon="@drawable/notebook"/>
+    <item
+        android:id="@+id/recite_translation"
+        android:title="ReciteTranslation"
+        android:icon="@drawable/notebook"
+        />
 </menu>

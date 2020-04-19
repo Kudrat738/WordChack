@@ -1,4 +1,4 @@
-package com.example.wordcheck.model;
+package com.example.wordcheck.kind;
 import android.example.wordcheck.R;
 /**
  * Created by 此文件打不开 on 2020/3/29.

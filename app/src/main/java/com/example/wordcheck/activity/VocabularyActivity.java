@@ -1,4 +1,4 @@
-package com.example.wordcheck;
+package com.example.wordcheck.activity;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -12,10 +12,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.example.wordcheck.R;
-import android.widget.Toast;
 
-import com.example.wordcheck.model.Vocabulary;
-import com.example.wordcheck.model.Words;
+import com.example.wordcheck.kind.Vocabulary;
 import com.example.wordcheck.util.FileUtil;
 import com.example.wordcheck.util.VocabularyAction;
 import com.example.wordcheck.util.VocabularyAdapter;
@@ -119,8 +117,10 @@ public class VocabularyActivity extends Activity {
                 VocabularyAdapter vocabularyAdapterb=new VocabularyAdapter(VocabularyActivity.this,R.layout.vocabulary_item,listViewVocabulary);
                 listView = (ListView) findViewById(R.id.vocabulary_listView);
                 listView.setAdapter(vocabularyAdapterb);
-
                 break;
+            case R.id.search_menu:
+                Intent intent=new Intent(VocabularyActivity.this,VocabularySerech.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

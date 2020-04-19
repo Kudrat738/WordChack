@@ -1,4 +1,4 @@
-package com.example.wordcheck;
+package com.example.wordcheck.activity;
 
 import android.app.Application;
 import android.content.Context;

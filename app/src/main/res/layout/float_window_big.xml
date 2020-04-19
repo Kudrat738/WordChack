@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:tools="http://schemas.android.com/tools"
+         android:id="@+id/big_window_layout"
+         android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+         android:orientation="vertical"
+  android:background="@android:color/darker_gray"
+  >
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="70dp"
+    android:orientation="horizontal"
+   >
+
+
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="5dp"
+        android:imeOptions="actionSearch"
+        />
+
+    <Button
+        android:id="@+id/serech_bt"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="right|bottom"
+        android:layout_marginTop="15dp"
+        android:background="@android:drawable/ic_search_category_default"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="0.5dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"/>
+</LinearLayout>
+

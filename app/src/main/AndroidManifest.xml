@@ -5,15 +5,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/dictionary"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name="com.example.wordcheck.AppContext">
+        android:name="com.example.wordcheck.activity.AppContext">
         <activity
-            android:name="com.example.wordcheck.MainActivity"
+            android:name="com.example.wordcheck.activity.MainActivity"
+            android:windowSoftInputMode="stateUnspecified"
             android:screenOrientation="portrait"> <!-- 固定竖屏 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,15 +23,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.wordcheck.VocabularyActivity"
+        <activity android:name="com.example.wordcheck.activity.VocabularyActivity"
             android:screenOrientation="portrait"
             android:label="Vocabulary"/>
-        <activity android:name="com.example.wordcheck.SentenceActivity"
+        <activity android:name="com.example.wordcheck.activity.SentenceActivity"
             android:screenOrientation="portrait"
             android:label="One sentence per day"></activity>
-        <activity android:name="com.example.wordcheck.ReciteWord"
+        <activity android:name="com.example.wordcheck.activity.ReciteWord"
             android:screenOrientation="portrait"
             android:label="ReciteWord"></activity>
+        <activity android:name="com.example.wordcheck.activity.ReciteTranslation"
+            android:screenOrientation="portrait"
+            android:label="ReciteTranslation"></activity>
+        <activity android:name="com.example.wordcheck.activity.VocabularySerech"
+            android:windowSoftInputMode="stateUnspecified"
+            android:screenOrientation="portrait"
+            android:label="VocabularySearch"/>
+        <service android:name="com.example.wordcheck.Service.FloatWindowService">
+                     </service>
+
     </application>
 
 </manifest>

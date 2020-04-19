@@ -1,6 +1,6 @@
 package com.example.wordcheck.util;
 
-import com.example.wordcheck.model.Sentence;
+import com.example.wordcheck.kind.Sentence;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

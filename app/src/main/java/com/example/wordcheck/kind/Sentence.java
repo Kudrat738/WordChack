@@ -1,4 +1,4 @@
-package com.example.wordcheck.model;
+package com.example.wordcheck.kind;
 
 /**
  * Created by 此文件打不开 on 2020/4/5.

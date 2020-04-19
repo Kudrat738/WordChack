@@ -1,37 +1,26 @@
-package com.example.wordcheck;
+package com.example.wordcheck.activity;
 
 import android.app.Activity;
 import android.example.wordcheck.R;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.wordcheck.model.Sentence;
+import com.example.wordcheck.kind.Sentence;
 import com.example.wordcheck.util.HttpCallBackListener;
 import com.example.wordcheck.util.HttpUtil;
-import com.example.wordcheck.util.ParseXML;
-import com.example.wordcheck.util.SentenceHandler;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * Created by 此文件打不开 on 2020/4/5.

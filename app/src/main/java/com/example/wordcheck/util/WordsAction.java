@@ -2,41 +2,20 @@ package com.example.wordcheck.util;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.example.wordcheck.R;
 
-import com.example.wordcheck.AppContext;
 import com.example.wordcheck.db.WordsSQLiteOpenHelper;
-import com.example.wordcheck.model.Words;
+import com.example.wordcheck.kind.Words;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.net.URLEncoder;
-import java.nio.Buffer;
 
-
-import static android.content.Context.MODE_PRIVATE;
 /**
  * Created by 此文件打不开 on 2020/3/29.
  */

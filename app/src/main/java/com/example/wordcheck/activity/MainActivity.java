@@ -1,4 +1,4 @@
-package com.example.wordcheck;
+package com.example.wordcheck.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,9 +8,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.example.wordcheck.R;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.CursorAdapter;
@@ -29,14 +31,15 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.wordcheck.example.DataBaseHelper;
-import com.example.wordcheck.model.Words;
+import com.example.wordcheck.Service.FloatWindowManager;
+import com.example.wordcheck.Service.FloatWindowService;
+import com.example.wordcheck.Service.FloatWindowSmallView;
+import com.example.wordcheck.util.DataBaseHelper;
+import com.example.wordcheck.kind.Words;
 import com.example.wordcheck.util.HttpCallBackListener;
 import com.example.wordcheck.util.HttpUtil;
 import com.example.wordcheck.util.MyListView;
@@ -46,16 +49,14 @@ import com.example.wordcheck.util.VocabularyAction;
 import com.example.wordcheck.util.WordsAction;
 import com.example.wordcheck.util.WordsHandler;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.jar.Manifest;
 
-import static android.content.Context.INPUT_METHOD_SERVICE;
 /**
  * Created by 此文件打不开 on 2020/3/29.
  */
 public class MainActivity extends Activity {
+    private FloatWindowManager floatWindowManager;
+    private Context context;
     private EditText et_search;
     private TextView tv_tip;
     private MyListView listView;
@@ -66,19 +67,16 @@ public class MainActivity extends Activity {
     private VocabularyAction vocabularyAction;
     private DataBaseHelper dataBaseHelper;
     private boolean ischech;
-
+    private View view;
     private static final int REQUEST_EXTERNAL_STORAGE=1;
     private static String[] PERMISSIONS_STORAGE={
             "Manifest.permission.READ_EXTERNAL_STORAGE","Manifest.permission.WRITE_EXTERNAL_STORAGE"
     };
-   // private SearchView searchView;
     private TextView searchWords_key, searchWords_psE, searchWords_psA, searchWords_posAcceptation, searchWords_sent;
     private ImageButton searchWords_voiceE, searchWords_voiceA;
     private LinearLayout searchWords_posA_layout,searchWords_posE_layout, searchWords_linerLayout, searchWords_fatherLayout;
     private WordsAction wordsAction;
     private Words words = new Words();
-    private String translation;
-
 
     /**
      * 网络查词完成后回调handleMessage方法
@@ -104,6 +102,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
+        floatWindowManager = FloatWindowManager.getInstance(context);
+        if(Build.VERSION.SDK_INT >= 23){   //悬浮窗口权限
+            if (!Settings.canDrawOverlays(context)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        }
         helper= new RecordSQLiteOpenHelper(this);
         dataBaseHelper=new DataBaseHelper(this,"glossary");
         vocabularyAction=VocabularyAction.getInstance(this);
@@ -127,31 +134,28 @@ public class MainActivity extends Activity {
         searchWords_psA = (TextView) findViewById(R.id.searchWords_psA);
         searchWords_posAcceptation = (TextView) findViewById(R.id.searchWords_posAcceptation);
         searchWords_sent = (TextView) findViewById(R.id.searchWords_sent);
+        show(view);
         searchWords_voiceE = (ImageButton) findViewById(R.id.searchWords_voiceE);
         searchWords_voiceE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            //    savea(words.getKey(),"A");
-            //    wordsAction.saveWordsMP3(words,"E");
                 wordsAction.playMP3(words.getKey(), "E", MainActivity.this);
+
             }
         });
         searchWords_voiceA = (ImageButton) findViewById(R.id.searchWords_voiceA);
         searchWords_voiceA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-           // savea(words.getKey(),"A");
-               //wordsAction.saveWordsMP3(words,"A");
                 wordsAction.playMP3(words.getKey(), "A", MainActivity.this);
             }
-        }); initView();
+        });
+        initView();//初始化搜索框
+        //内存读取权限
         if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this,PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
 
         }
-
         // 清空搜索历史
         tv_clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,7 +164,14 @@ public class MainActivity extends Activity {
                 queryData("");
             }
         });
+        floatWindowManager.setOnClickListener(new FloatWindowSmallView.OnClickListener() {
 
+
+            @Override
+            public void click() {
+                floatWindowManager.createBigWindow(context);
+            }
+        });
         // 搜索框的键盘搜索键点击回调
         et_search.setOnKeyListener(new View.OnKeyListener() {// 输入完后按键盘上的搜索键
 
@@ -175,8 +186,6 @@ public class MainActivity extends Activity {
                         insertData(et_search.getText().toString().trim());
                         queryData("");
                     }
-
-
                 }
 
                 return false;
@@ -374,8 +383,14 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.newWords:
-                Intent intent=new Intent(MainActivity.this,VocabularyActivity.class);
-                startActivity(intent);
+                Intent intent2=new Intent(MainActivity.this,VocabularyActivity.class);
+                startActivity(intent2);
+                Intent intent = new Intent(context, FloatWindowService.class);
+                intent.putExtra(FloatWindowService.LAYOUT_RES_ID,
+                        R.layout.float_window_small);
+                intent.putExtra(FloatWindowService.ROOT_LAYOUT_ID,
+                        R.id.small_window_layout);
+                startService(intent);
                 break;
             case R.id.add:
                 words=getWords();
@@ -383,8 +398,12 @@ public class MainActivity extends Activity {
                 dataBaseHelper.insertWordInfoToDataBase(words.getKey(),words.getPosAcceptation(),true);
                 break;
             case R.id.sentence:
-                Intent intent2=new Intent(MainActivity.this,SentenceActivity.class);
-                startActivity(intent2);
+                Intent intent4=new Intent(MainActivity.this,SentenceActivity.class);
+                startActivity(intent4);
+                break;
+            case R.id.recite_translation:
+                Intent intent5=new Intent(MainActivity.this,ReciteTranslation.class);
+                startActivity(intent5);
                 break;
             case R.id.recite:
                 Intent intent3=new Intent(MainActivity.this,ReciteWord.class);
@@ -393,6 +412,61 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
+    /**
+     41 	 * 显示小窗口
+     42 	 *
+     43 	 * @param view
+     44 	 */
+    public void show(View view) {
+        // 需要传递小悬浮窗布局，以及根布局的id，启动后台服务
+        Intent intent = new Intent(context, FloatWindowService.class);
+        intent.putExtra(FloatWindowService.LAYOUT_RES_ID,
+                R.layout.float_window_small);
+        intent.putExtra(FloatWindowService.ROOT_LAYOUT_ID,
+                R.id.small_window_layout);
+        startService(intent);
+       // showBig(view);
+    }
+
+
+    /**
+     56 	 * 显示二级悬浮窗
+     57 	 *
+     58 	 * @param view
+     59
+    public void showBig(View view) {
+        // 设置小悬浮窗的单击事件
+        floatWindowManager.setOnClickListener(new FloatWindowSmallView.OnClickListener() {
+
+
+            @Override
+            public void click() {
+                floatWindowManager.createBigWindow(context);
+            }
+        });
+
+
+
+    }
+
+
+
+  /*  @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+
+        // 返回键移除二级悬浮窗
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            floatWindowManager.removeBigWindow();
+            return true;
+        }
+
+
+        return super.onKeyDown(keyCode, event);
+    }
    /* public void onRequestPeimissionsResult(int requestCode,String[] permissions,int[] grantResults){
         switch (requestCode){
             case 1:

@@ -2,11 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/alphabet"
-        android:title="alphabet"
+        android:title="Alphabet"
 
         />
     <item
         android:id="@+id/defaults"
-        android:title="defaults"
+        android:title="Defaults"
         android:icon="@drawable/notebook"/>
+    <item
+        android:id="@+id/search_menu"
+        android:title="Search"
+        android:icon="@drawable/search"/>
 </menu>

@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="50dp"/>
+        android:textSize="25dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0.5dp"></LinearLayout>
@@ -59,14 +59,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="10dp"
+        android:textSize="20dp"
         android:text=""
         android:visibility="invisible"/>
     <TextView
         android:id="@+id/translation2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="30dp"
         android:layout_margin="10dp"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
         android:id="@+id/translation3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="30dp"
         android:layout_margin="10dp"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
         android:id="@+id/translation4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="30dp"
         android:layout_margin="10dp"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,22 +96,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="15dp"
+        android:textSize="30dp"
         android:layout_margin="10dp"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-       android:layout_gravity="bottom">
+        android:layout_gravity="bottom">
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_margin="5dp"
-        android:text="Next"
-        android:background="@android:drawable/checkbox_off_background"/>
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_margin="5dp"
+            android:text="Next"
+            android:background="@android:drawable/checkbox_off_background"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,36 +119,36 @@
             android:layout_marginLeft="85dp"
             >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="学习进度 ："
-                        android:layout_gravity="center"
-                        />
-                    <TextView
-                        android:id="@+id/learned"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="0"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学习进度 ："
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:id="@+id/learned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="%"
                 android:layout_gravity="center"
                 />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="  未学过的单词 ："
-                        android:layout_gravity="center"
-                        />
-                    <TextView
-                        android:id="@+id/unlearned"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="   "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  未学过的单词 ："
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:id="@+id/unlearned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="   "/>
 
 
 
@@ -162,7 +162,7 @@
             android:layout_alignParentRight="true"
             android:background="@android:drawable/checkbox_off_background"
             android:layout_margin="5dp"
-        />
+            />
     </RelativeLayout>
 
 </LinearLayout>

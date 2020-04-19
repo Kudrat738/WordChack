@@ -1,10 +1,7 @@
 package com.example.wordcheck.util;
 
-import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
-
-import com.example.wordcheck.AppContext;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -1,14 +1,16 @@
-package com.example.wordcheck;
+package com.example.wordcheck.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.example.wordcheck.R;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.wordcheck.example.WordBox;
-import com.example.wordcheck.example.WordInfo;
+import com.example.wordcheck.util.WordBox;
+import com.example.wordcheck.kind.WordInfo;
 import com.example.wordcheck.util.WordsAction;
 
 import java.util.Random;
@@ -20,7 +22,6 @@ import java.util.Random;
 public class ReciteWord extends Activity{
     private WordBox wordBox;
     private String tableName="glossary";
-    private String tableName2="Vocabulary";
     private WordInfo wordInfo;
     private WordInfo wordInfo2;
     private WordInfo wordInfo3;
@@ -65,7 +66,6 @@ public class ReciteWord extends Activity{
             @Override
             public void onClick(View v) {
                 wordInfo=wordBox.popWord();
-              //  setWordInfo(wordInfo);
                 ky.setText(wordInfo.getWord());
                 translation.setVisibility(View.INVISIBLE);
                 grasp.setVisibility(View.INVISIBLE);
@@ -332,7 +332,9 @@ public class ReciteWord extends Activity{
             }
         });
 
-    }}
+    }
+
+}
 
 /*    public WordInfo getWordInfo() {
         return wordInfo;

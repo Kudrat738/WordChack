@@ -1,7 +1,7 @@
 package com.example.wordcheck.util;
 
-import com.example.wordcheck.model.Words;
-import android.example.wordcheck.R;
+import com.example.wordcheck.kind.Words;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

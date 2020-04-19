@@ -1,4 +1,4 @@
-package com.example.wordcheck.example;
+package com.example.wordcheck.util;
 
 import android.content.ContentValues;
 import android.content.Context;
