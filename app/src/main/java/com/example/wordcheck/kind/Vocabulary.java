@@ -1,44 +1,23 @@
 package com.example.wordcheck.kind;
 import android.example.wordcheck.R;
+
 /**
  * Created by 此文件打不开 on 2020/3/29.
  */
-public class Vocabulary/* implements Comparable<Vocabulary> */{
-    /**
-     * 生词的掌握程度，等级1：生词
-     */
+
+public class Vocabulary{
+    //生词的掌握程度
     public static final int MASTERY_LEVEL_1 = 1;
-    /**
-     * 生词的掌握程度，等级2：熟悉
-     */
-    public static final int MASTERY_LEVEL_2 = 2;
-    /**
-     * 生词的掌握程度，等级3：基本掌握
-     */
-    public static final int MASTERY_LEVEL_3 = 3;
-    /**
-     * 生词的掌握程度，等级4：完全掌握
-     */
-    public static final int MASTERY_LEVEL_4 = 4;
-    /**
-     * 生词的key，对应Words类的key属性
-     */
     private String wordsKey;
     /**
      * 生词的基本释义，对应Words类的posAcceptation属性
      */
     private String translation;
-    /**
-     * 生词的掌握程度,可选四个等级，初始等级1，例：Vocabulary.MASTERY_LEVEL_1
-     */
+    //生词的掌握程度
     private int masteryLevel;
-    /**
-     * 练习中答对的次数，练习答对两次提升掌握等级
-     */
+    //练习中答对的次数
     private int right;
-    /**
-     * 练习中答错的次数，答错一次降低掌握等级
-     */
+    //练习中答错的次数
     private int wrong;
 
     public Vocabulary() {
@@ -60,11 +39,7 @@ public class Vocabulary/* implements Comparable<Vocabulary> */{
     public String getWordsKey() {
         return wordsKey;
     }
-    /*
-    @Override
-    public int compareTo(Vocabulary vocabulary) {
-        return vocabulary.getWordsKey().compareTo(this.getWordsKey());
-    }*/
+
 
     public void setWordsKey(String wordsKey) {
         this.wordsKey = wordsKey;

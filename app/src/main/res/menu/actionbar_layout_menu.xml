@@ -3,23 +3,20 @@
     <item
         android:id="@+id/add"
         android:title="Add"
-        android:icon="@drawable/more"
         />
     <item
         android:id="@+id/newWords"
-        android:title="NewWords"
-        android:icon="@drawable/notebook"/>
+        android:title="NewWords" />
     <item
         android:id="@+id/sentence"
-        android:title="Sentence"
-        android:icon="@drawable/notebook"/>
+        android:title="Sentence" />
     <item
         android:id="@+id/recite"
         android:title="ReciteWord"
-        android:icon="@drawable/notebook"/>
+        />
     <item
         android:id="@+id/recite_translation"
         android:title="ReciteTranslation"
-        android:icon="@drawable/notebook"
+
         />
 </menu>

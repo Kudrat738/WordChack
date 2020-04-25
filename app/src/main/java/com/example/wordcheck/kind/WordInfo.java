@@ -1,7 +1,7 @@
 package com.example.wordcheck.kind;
 
 /**
- * Created by 此文件打不开 on 2020/3/29.
+ * Created by 此文件打不开 on 2020/4/10.
  */
 public class WordInfo {
     public String word;

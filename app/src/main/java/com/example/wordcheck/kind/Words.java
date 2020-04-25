@@ -4,41 +4,23 @@ import android.example.wordcheck.R;
  * Created by 此文件打不开 on 2020/3/29.
  */
 public class Words {
-    /**
-     * 中英文标记
-     */
+    //中英文标记
     private boolean isChinese;
-    /**
-     * 要翻译的单词，可以是中文；
-     */
+    //要翻译的单词，可以是中文；
     private String key;
-    /**
-     * key为中文时的翻译
-     */
+    //key为中文时的翻译
     private String fy;
-    /**
-     * 英音发音
-     */
+    //英音发音
     private String psE;
-    /**
-     * 英音发音的mp3地址
-     */
+    //英音发音的mp3地址
     private String pronE;
-    /**
-     * 美音发音
-     */
+    //美音发音
     private String psA;
-    /**
-     * 美音发音的mp3地址
-     */
+    //美音发音的mp3地址
     private String pronA;
-    /**
-     * 单词的词性与词义
-     */
+    //单词的词性与词义
     private String posAcceptation;
-    /**
-     * 例句
-     */
+    //例句
     private String sent;
 
     public Words() {

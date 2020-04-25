@@ -80,11 +80,11 @@
                     android:background="@drawable/layer_list_view">
 
 
-                <com.example.wordcheck.util.MyListView
+                <com.example.wordcheck.list.MyListView
                     android:id="@+id/listView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                </com.example.wordcheck.util.MyListView>
+                </com.example.wordcheck.list.MyListView>
 
               </ScrollView>
 

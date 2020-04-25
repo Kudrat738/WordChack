@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vocabulary_search_father"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.example.wordcheck.activity.VocabularySerech">>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -12,11 +14,15 @@
 
         <EditText
             android:id="@+id/vocabulary_search"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="45dp"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="5dp"
+            android:hint="输入查询的单词"
             android:imeOptions="actionSearch"
+            android:singleLine="true"
+            android:textColor="#3B3C3D"
+            android:textSize="16sp"
             />
 
         <Button

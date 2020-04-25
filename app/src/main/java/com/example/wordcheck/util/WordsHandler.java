@@ -18,9 +18,7 @@ public class WordsHandler extends DefaultHandler {
     //例句
     private StringBuilder sent;
 
-    /**
-     * 获取解析后的words对象
-     */
+    //获取解析后的words对象
     public Words getWords() {
         return words;
     }

@@ -8,9 +8,8 @@ import android.example.wordcheck.R;
  * Created by 此文件打不开 on 2020/3/29.
  */
 public class VocabularySQLiteHelper extends SQLiteOpenHelper {
-    /**
-     * 建表语句
-     */
+
+    //建表语句
     private final String CREATE_VOCABULARY = "create table Vocabulary ( " +
             "id Integer primary key autoincrement," +
             "wordsKey text," +

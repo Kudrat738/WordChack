@@ -25,6 +25,7 @@ public class FloatWindowService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         context = this;
+        //保证id是合法数据
         layoutResId = intent.getIntExtra(LAYOUT_RES_ID, 0);
         rootLayoutId = intent.getIntExtra(ROOT_LAYOUT_ID, 0);
         if (layoutResId == 0 || rootLayoutId == 0) {

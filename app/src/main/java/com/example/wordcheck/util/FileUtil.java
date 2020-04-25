@@ -14,30 +14,17 @@ import java.io.OutputStream;
  */
 
 public class FileUtil {
-    /**
-     * SD卡的目录
-     */
+    //SD卡的目录
     private String SDPath;
-    /**
-     * 本app存储的目录
-     */
+    //app存储的目录
     private String AppPath;
-    /**
-     * 本类的单例
-     */
     private static FileUtil fileUtil;
 
-    /**
-     * 私有化的构造器
-     */
     private FileUtil() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             //如果手机已插入SD卡，且应用程序具有读写SD卡的功能，则返回true
 
             SDPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
-            //清理测试时产生的文件
-//            File f = new File(SDPath + "VocabularyBuilder");
-//            deleteFile(f);
             File fileV = createSDDir(SDPath, "VocabularyBuilder");
             AppPath = fileV.getAbsolutePath() + "/";
         }else{
@@ -45,9 +32,7 @@ public class FileUtil {
         }
     }
 
-    /**
-     * 单例类FileUtil获取实例方法
-     */
+    //单例类FileUtil获取实例方法
     public static FileUtil getInstance() {
         if (fileUtil == null) {
             synchronized (FileUtil.class) {
@@ -59,12 +44,7 @@ public class FileUtil {
         return fileUtil;
     }
 
-    /**
-     * 创建目录
-     *
-     * @param path    文件夹的路径
-     * @param dirName 文件夹名
-     */
+    //创建目录
     public File createSDDir(String path, String dirName) {
         File dir = new File(path + dirName);
         if (dir.exists() && dir.isDirectory()) {
@@ -76,12 +56,7 @@ public class FileUtil {
         return dir;
     }
 
-    /**
-     * 创建SD文件
-     *
-     * @param path     文件的路径
-     * @param fileName 文件名
-     */
+    //创建文件
     public File createSDFile(String path, String fileName) {
         File file = new File(path + fileName);
         if (file.exists() && file.isFile()) {
@@ -96,13 +71,7 @@ public class FileUtil {
         return file;
     }
 
-    /**
-     * 向SD卡中写入文件
-     *
-     * @param path        文件夹名
-     * @param fileName    文件名
-     * @param inputStream 输入流
-     */
+    //向SD卡中写入文件
     public void writeToSD(String path, String fileName, InputStream inputStream) {
         OutputStream outputStream = null;
         try {
@@ -112,9 +81,7 @@ public class FileUtil {
             int length;
             byte[] buffer = new byte[2 * 1024];
             while ((length = inputStream.read(buffer)) != -1) {
-                //注意这里的length；
                 //利用read返回的实际成功读取的字节数，将buffer写入文件，
-                // 否则将会出现错误的字节，导致保存文件与源文件不一致
                 outputStream.write(buffer, 0, length);
             }
             outputStream.flush();
@@ -133,11 +100,7 @@ public class FileUtil {
         }
     }
 
-    /**
-     * 获取文件在SD卡上绝对路径，如无该文件返回""
-     *
-     * @param fileName 单词对应的文件夹名
-     */
+    //获取文件在SD卡上绝对路径，如无该文件返回""
     public String getPathInSD(String fileName) {
         File file = new File(AppPath + fileName);
         if (file.exists()) {
@@ -146,21 +109,19 @@ public class FileUtil {
         return "";
     }
 
-    /**
-     * 递归删除文件夹
-     *
-     * @param file 文件夹或者文件名
-     */
+    //递归删除文件夹
     public void deleteFile(File file) {
-        if (file.exists()) {//判断文件是否存在
-            if (file.isFile()) {//判断是否是文件
-                file.delete();//删除文件
-            } else if (file.isDirectory()) {//否则如果它是一个目录
-                File[] files = file.listFiles();//声明目录下所有的文件 files[];
-                for (int i = 0; i < files.length; i++) {//遍历目录下所有的文件
-                    deleteFile(files[i]);//把每个文件用这个方法进行迭代
+        if (file.exists()) {
+            if (file.isFile()) {
+                file.delete();
+            } else if (file.isDirectory()) {
+                //声明目录下所有的文件 files[]
+                File[] files = file.listFiles();
+                for (int i = 0; i < files.length; i++) {
+                    //把每个文件用这个方法进行迭代
+                    deleteFile(files[i]);
                 }
-                file.delete();//删除文件夹
+                file.delete();
             }
         }
     }

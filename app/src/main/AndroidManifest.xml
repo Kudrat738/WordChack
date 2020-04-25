@@ -16,7 +16,7 @@
         <activity
             android:name="com.example.wordcheck.activity.MainActivity"
             android:windowSoftInputMode="stateUnspecified"
-            android:screenOrientation="portrait"> <!-- 固定竖屏 -->
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,7 +38,8 @@
         <activity android:name="com.example.wordcheck.activity.VocabularySerech"
             android:windowSoftInputMode="stateUnspecified"
             android:screenOrientation="portrait"
-            android:label="VocabularySearch"/>
+            android:label="VocabularySearch">
+        </activity>
         <service android:name="com.example.wordcheck.Service.FloatWindowService">
                      </service>
 

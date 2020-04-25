@@ -1,4 +1,4 @@
-package com.example.wordcheck.util;
+package com.example.wordcheck.single;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,27 +15,16 @@ import java.util.List;
 import android.util.Log;
 
 /**
- * Created by 此文件打不开 on 2020/3/29.
+ * Created by 此文件打不开 on 2020/4/2.
  */
 public class VocabularyAction {
-    /**
-     * Vocabulary的表名
-     */
+    //Vocabulary的表名
     private final String TABLE_VOCABULARY = "Vocabulary";
-    /**
-     * 本类的实例
-     */
+
     private static VocabularyAction vocabularyAction;
     private boolean check;
- //   private Words words;
-    /**
-     * 数据库工具，用于增、删、该、查
-     */
     private SQLiteDatabase db;
 
-    /**
-     * 私有化的构造器
-     */
     private VocabularyAction(Context context) {
         VocabularySQLiteHelper vocabularySQLiteHelper = new VocabularySQLiteHelper(context, TABLE_VOCABULARY, null, 1);
         db = vocabularySQLiteHelper.getWritableDatabase();
@@ -44,11 +33,7 @@ public class VocabularyAction {
 
 
 
-    /**
-     * 单例类VocabularyAction获取实例方法
-     *
-     * @param context 上下文
-     */
+    // 单例类VocabularyAction获取实例方法
     public static VocabularyAction getInstance(Context context) {
         if (vocabularyAction == null) {
             synchronized (VocabularyAction.class) {
@@ -60,11 +45,7 @@ public class VocabularyAction {
         return vocabularyAction;
     }
 
-    /**
-     * 向生词本中添加单词
-     *
-     * @param words 查询到的单词
-     */
+    //向生词本中添加单词
     public void addToVocabulary(Words words) {
         check = isExistInVocabulary(words.getKey());
         if (check) {
@@ -84,11 +65,7 @@ public class VocabularyAction {
         }
 
     }
-    /**
-     * 判断单词是否存在于生词本中
-     *
-     * @param wordsKey 查询到的单词的key
-     */
+    //判断单词是否存在于生词本中
     public boolean isExistInVocabulary(String wordsKey) {
         Cursor cursor = db.query(TABLE_VOCABULARY, null, null, null, null, null, null);
         if (cursor.moveToFirst()){
@@ -114,8 +91,6 @@ public class VocabularyAction {
     }
 
     //获取生词本中所有生词
-
-
     public List<Vocabulary> getVocabularyList() {
         List<Vocabulary> vocabularyList = new ArrayList<Vocabulary>();
         Cursor cursor = db.query(TABLE_VOCABULARY, null, null, null, null, null, null);

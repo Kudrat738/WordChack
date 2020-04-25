@@ -9,14 +9,7 @@ import android.example.wordcheck.R;
  * Created by 此文件打不开 on 2020/3/29.
  */
 public class HttpUtil {
-    /**
-     * 在新线程中发送网络请求
-     *
-     * @param address  网络地址
-     * @param listener HttpCallBackListener接口的实现类;
-     *                 onFinish方法为访问成功后的回调方法;
-     *                 onError为访问不成功时的回调方法
-     */
+    //在新线程中发送网络请求
     public static void sentHttpRequest(final String address, final HttpCallBackListener listener) {
         new Thread(new Runnable() {
             @Override

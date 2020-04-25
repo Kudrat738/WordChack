@@ -8,9 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class WordsSQLiteOpenHelper extends SQLiteOpenHelper {
-    /**
-     * 建表语句
-     */
+
+    //建表语句
     private final String CREATE_WORDS = "create table Words(" +
             "id Integer primary key autoincrement," +
             "isChinese text," +

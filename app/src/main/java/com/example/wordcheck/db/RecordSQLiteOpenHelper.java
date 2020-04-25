@@ -1,4 +1,4 @@
-package com.example.wordcheck.util;
+package com.example.wordcheck.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

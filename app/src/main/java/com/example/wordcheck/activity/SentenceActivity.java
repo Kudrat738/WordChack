@@ -29,10 +29,8 @@ import java.io.InputStreamReader;
 public class SentenceActivity extends Activity {
     private TextView caption,content,note;
     private ImageView picture;
-    private Sentence sentence=new Sentence();
     private String address="http://open.iciba.com/dsapi";
     private String mp3;
-    private  Bitmap bitmap;
     private   Drawable drawable;
     private MediaPlayer mediaPlayer=new MediaPlayer();
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +42,7 @@ public class SentenceActivity extends Activity {
         picture=(ImageView)findViewById(R.id.picture);
         drawable=null;
        download();
+        //单击图片播放音频
         picture.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -66,15 +65,7 @@ public class SentenceActivity extends Activity {
         }
 
     }
-
-    public Drawable getDrawable() {
-        return drawable;
-    }
-
-    public void setDrawable(Drawable drawable) {
-        this.drawable = drawable;
-    }
-
+    //得到数据
     public void download() {
         HttpUtil.sentHttpRequest(address, new HttpCallBackListener() {
             BufferedReader reader=null;
@@ -107,21 +98,17 @@ public class SentenceActivity extends Activity {
         });
 
     }
-
+//将网络得到数据进行UI操作
     private void showResponse( final String s) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 try {
                     JSONObject json=new JSONObject(s);
-                    //JSONArray jsonArray = new JSONArray(s);
-                   // JSONObject json =jsonArray.getJSONObject(0);
                     caption.setText(json.getString("caption"));
                     getHttpBitmap(json.getString("picture2"));
-                  // Bitmap bit=getBitmap();
                   mp3=json.getString("tts");
                     initMediaPlayer(mp3);
-                    picture.setImageDrawable(drawable);
                     content.setText(json.getString("content"));
                     note.setText(json.getString("note"));
                 } catch (Exception e) {
@@ -129,7 +116,7 @@ public class SentenceActivity extends Activity {
                 }
             }  });
     }
-
+//播放音频
     private void initMediaPlayer(String mp3) {
         try {
             mediaPlayer.setDataSource(mp3);
@@ -138,15 +125,7 @@ public class SentenceActivity extends Activity {
             e.printStackTrace();
         }
     }
-
-    public Bitmap getBitmap() {
-        return bitmap;
-    }
-
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
-    }
-
+    //加载图片
     public void getHttpBitmap(String uri) {
         HttpUtil.sentHttpRequest(uri, new HttpCallBackListener() {
             @Override
@@ -157,14 +136,13 @@ public class SentenceActivity extends Activity {
                     Log.d("测试","返回成功");
                 }
                 drawable=Drawable.createFromStream(inputStream,null);
+                //在新的线程里进行UI操作
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         picture.post(new Runnable() {
                             @Override
                             public void run() {
-
-
                                 picture.setImageDrawable(drawable);
                             }
                         });
@@ -175,13 +153,6 @@ public class SentenceActivity extends Activity {
                 }else {
                     Log.d("测试","de成功");
                 }
-            /*    bitmap=BitmapFactory.decodeStream(inputStream);
-                if (bitmap.equals(null)){
-                    Log.d("测试","bitmap错误");
-                }else {
-                    Log.d("测试","bitmap成功");
-                }
-                setBitmap(bitmap); */
     }
             @Override
         public void onError() {

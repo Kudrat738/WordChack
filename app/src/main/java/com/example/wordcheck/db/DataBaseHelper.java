@@ -1,4 +1,4 @@
-package com.example.wordcheck.util;
+package com.example.wordcheck.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -21,7 +21,6 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     public DataBaseHelper(Context context, String name, CursorFactory factory,
                           int version) {
         super(context, name, factory, version);
-        // TODO Auto-generated constructor stub
         mContext=context;
         tableName=name;
         dbR=this.getReadableDatabase();
@@ -42,7 +41,6 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO Auto-generated method stub
         db.execSQL("create table glossary(word text,interpret text," +
                 "right int,wrong int,grasp int,learned int)");
 
@@ -50,22 +48,12 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
-        // TODO Auto-generated method stub
-
     }
 
-    /**
-     *
-     * @param word
-     * @param interpret
-     * @param overWrite  是否覆写原有数据
-     * @return
-     */
+//添加数据或更新数据
     public boolean insertWordInfoToDataBase(String word,String interpret,boolean overWrite){
-
         Cursor cursor=null;
-
-        cursor=    dbR.query(tableName, new String[]{"word"}, "word=?", new String[]{word},null, null, "word");
+        cursor=dbR.query(tableName, new String[]{"word"}, "word=?", new String[]{word},null, null, "word");
         if(cursor.moveToNext()){
             if(overWrite){
                 ContentValues values=new ContentValues();
@@ -74,7 +62,6 @@ public class DataBaseHelper extends SQLiteOpenHelper{
                 values.put("wrong",0);
                 values.put("grasp",0);
                 values.put("learned", 0);
-
                 dbW.update(tableName, values, "word=?", new String[]{word});
                 cursor.close();
                 Log.d("测试","数据库");
@@ -84,7 +71,6 @@ public class DataBaseHelper extends SQLiteOpenHelper{
                 return false;
             }
         }else{
-
             ContentValues values=new ContentValues();
             values.put("word", word);
             values.put("interpret", interpret);

@@ -19,16 +19,14 @@ public class FloatWindowManager {
     private FloatWindowManager(Context context) {
         this.context = context;
     }
+
     public static FloatWindowManager getInstance(Context context) {
         if (floatWindowManager == null) {
             floatWindowManager = new FloatWindowManager(context);
         }
         return floatWindowManager;
     }
-    /**
-     * 创建小悬浮窗
-     * 必须为应用程序的Context.
-     */
+    //创建小悬浮窗，必须为应用程序的Context.
     public void createSmallWindow(Context context, int layoutResId,
                                   int rootLayoutId) {
         WindowManager windowManager = getWindowManager();
@@ -38,9 +36,8 @@ public class FloatWindowManager {
             windowManager.addView(smallWindow, smallWindow.smallWindowParams);
         }
     }
-    /**
-     * 将小悬浮窗从屏幕上移除
-     */
+    //将小悬浮窗从屏幕上移除
+
     public void removeSmallWindow() {
         if (smallWindow != null) {
             WindowManager windowManager = getWindowManager();
@@ -53,12 +50,8 @@ public class FloatWindowManager {
             smallWindow.setOnClickListener(listener);
         }
     }
-    /**
-     * 创建大悬浮窗
-     *
-     * @param context
-     * 必须为应用程序的Context.
-     */
+    //创建大悬浮窗，必须为应用程序的Context.
+
     public void createBigWindow(Context context) {
         WindowManager windowManager = getWindowManager();
         if (bigWindow == null) {
@@ -66,9 +59,7 @@ public class FloatWindowManager {
             windowManager.addView(bigWindow, bigWindow.bigWindowParams);
         }
     }
-    /**
-     * 将大悬浮窗从屏幕上移除
-     */
+    //将大悬浮窗从屏幕上移除
     public void removeBigWindow() {
         if (bigWindow != null) {
             WindowManager windowManager = getWindowManager();
@@ -81,17 +72,11 @@ public class FloatWindowManager {
         removeSmallWindow();
         removeBigWindow();
     }
-    /**
-     * 是否有悬浮窗显示(包括小悬浮窗和大悬浮)
-     *
-     * @return 有悬浮窗显示在桌面上返回true，没有的话返回false
-     */
+    //是否有悬浮窗显示(包括小悬浮窗和大悬浮)
     public boolean isWindowShowing() {
         return smallWindow != null || bigWindow != null;
     }
-    /**
-     * 如果WindowManager还未创建，则创建新的WindowManager返回。否则返回当前已创建的WindowManager
-     */
+    //如果WindowManager还未创建，则创建新的WindowManager返回。否则返回当前已创建的WindowManager
     private WindowManager getWindowManager() {
         if (mWindowManager == null) {
             mWindowManager = (WindowManager) context

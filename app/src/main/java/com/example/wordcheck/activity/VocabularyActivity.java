@@ -15,9 +15,9 @@ import android.example.wordcheck.R;
 
 import com.example.wordcheck.kind.Vocabulary;
 import com.example.wordcheck.util.FileUtil;
-import com.example.wordcheck.util.VocabularyAction;
-import com.example.wordcheck.util.VocabularyAdapter;
-import com.example.wordcheck.util.WordsAction;
+import com.example.wordcheck.single.VocabularyAction;
+import com.example.wordcheck.list.VocabularyAdapter;
+import com.example.wordcheck.single.WordsAction;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -47,20 +47,12 @@ public class VocabularyActivity extends Activity {
         listViewVocabulary=vocabularyAction.getVocabularyList();
         VocabularyAdapter vocabularyAdapter=new VocabularyAdapter(VocabularyActivity.this,R.layout.vocabulary_item,listViewVocabulary);
         listView = (ListView) findViewById(R.id.vocabulary_listView);
-       // listView.setItemsCanFocus(true);
         listView.setAdapter(vocabularyAdapter);
+        //单击播放英式读音
      listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position,long id) {
                 Vocabulary vocabulary = listViewVocabulary.get(position);
-                //switch (view.getId()) {
-               /*     case R.id.voice_a:
-                        wordsAction.playMP3(vocabulary.getWordsKey(), "A", VocabularyActivity.this);
-                        break;
-                    case R.id.voice_e:
-                        wordsAction.playMP3(vocabulary.getWordsKey(), "E", VocabularyActivity.this);
-                        break;*/
-                // case R.id.delete:
                 if (ischech) {
                     wordsAction.playMP3(vocabulary.getWordsKey(), "E", VocabularyActivity.this);
 
@@ -69,6 +61,7 @@ public class VocabularyActivity extends Activity {
                 }
             }
         });
+        //长按删除
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,int position,long id){
@@ -76,6 +69,7 @@ public class VocabularyActivity extends Activity {
                 Vocabulary vocabulary=listViewVocabulary.get(position);
                 vocabularyAction.deleteFormVocabulary(vocabulary.getWordsKey());
                 refresh();
+                //删除该单词对应的音频
                 File file=new File(vocabulary.getWordsKey());
                 FileUtil.getInstance().deleteFile(file);
                 ischech=false;
@@ -85,18 +79,21 @@ public class VocabularyActivity extends Activity {
 
 
     }
+    //刷新数据
     public void refresh(){
         listViewVocabulary=vocabularyAction.getVocabularyList();
         VocabularyAdapter vocabularyAdapter=new VocabularyAdapter(VocabularyActivity.this,R.layout.vocabulary_item,listViewVocabulary);
         listView.setAdapter(vocabularyAdapter);
 
     }
+    //菜单
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.vocabulary_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+    //菜单的选择函数
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
